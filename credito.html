@@ -132,7 +132,8 @@
   <!-- ======= Header/Navbar ======= -->
   <nav class="navbar navbar-default navbar-trans navbar-expand-lg fixed-top">
     <div class="container">
-      <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarDefault" aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarDefault"
+        aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span></span>
         <span></span>
         <span></span>
@@ -159,7 +160,8 @@
           </li>
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">Pages</a>
             <div class="dropdown-menu">
               <a class="dropdown-item " href="property-single.html">Property Single</a>
               <a class="dropdown-item " href="blog-single.html">Blog Single</a>
@@ -176,7 +178,8 @@
         </ul>
       </div>
 
-      <button type="button" class="btn btn-b-n navbar-toggle-box navbar-toggle-box-collapse" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01">
+      <button type="button" class="btn btn-b-n navbar-toggle-box navbar-toggle-box-collapse" data-bs-toggle="collapse"
+        data-bs-target="#navbarTogglerDemo01">
         <i class="bi bi-search"></i>
       </button>
 
@@ -192,7 +195,8 @@
           <div class="col-md-12 col-lg-8">
             <div class="title-single-box">
               <h1 class="title-single">Calcule su Crédito</h1>
-              <span class="color-text-a">En el siguiente formulario podrá realizar cálculos del crédito para adquirir su casa</span>
+              <span class="color-text-a">En el siguiente formulario podrá realizar cálculos del crédito para adquirir su
+                casa</span>
             </div>
           </div>
           <div class="col-md-12 col-lg-4">
@@ -217,8 +221,96 @@
         <div class="row">
           <div class="col-sm-12">
             <div class="contact-map box">
-              <div id="formularioCredito" >
+              <div id="formularioCredito">
                 Incluya aquí su formulario
+
+                <form>
+                  <div class="row">
+                    <div class="col-md-4 mb-3">
+                      <div class="form-group">
+                        <input type="text" name="name" class="form-control form-control-lg form-control-a"
+                          placeholder="Your Name" required>
+                      </div>
+                    </div>
+                    <div class="col-md-5 mb-3">
+                      <div class="form-group">
+                        <input name="email" type="email" class="form-control form-control-lg form-control-a"
+                          placeholder="Your Email" required>
+                      </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                      <div class="form-group">
+                        <input type="date" name="Birthdate" class="form-control form-control-lg form-control-a"
+                          placeholder="Birthdate" required>
+                      </div>
+                    </div>
+
+                    <div class="col-md-4">
+                      <div class="input-group mb-3">
+                        <span class="input-group-text">Net Monthly Salary $</span>
+                        <input type="number" class="form-control" id="netSalary"
+                          aria-label="Amount (to the nearest dollar)" required>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="input-group mb-3">
+                        <span class="input-group-text">Interest Rate $</span>
+                        <input type="number" value="7.10" class="form-control" id="interestRate"
+                          aria-label="Amount (to the nearest dollar)" required>
+                        <span class="input-group-text">%</span>
+                      </div>
+                    </div>
+
+                    <div class="col-md-4">
+                      <div class="input-group mb-3">
+                        <span class="input-group-text">Range Years</span>
+                        <input type="range" class="form-control range" min="1" max="30" value="0" id="rango"
+                          oninput="mostrarValor()" required>
+                        <span class="input-group-text">Valor actual :<span id="valor">1</span></span>
+                      </div>
+                    </div>
+
+                    <div class="col-md-4">
+                      <div class="input-group mb-3">
+                        <span class="input-group-text">Home value $</span>
+                        <input type="number" class="form-control" id="homeValue"
+                          aria-label="Amount (to the nearest dollar)" required>
+                      </div>
+                    </div>
+
+                    <div class="col-md-8">
+                      <div class="input-group mb-4">
+                        <span class="input-group-text">Amount required $</span>
+                        <input type="number" class="form-control" id="amountRequired"
+                          aria-label="Amount (to the nearest dollar)" required>
+                          <span class="input-group-text">maximum 80% on housing</span>
+                      </div>
+                    </div>
+
+                    <div class="col-md-12">                      
+                      <input class="btn btn-secondary" type="submit" value="Submit" onclick="montoPago( )">                    
+                    </div>
+
+
+                    <div class="modal" tabindex="-1" role="dialog" id="miModal">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title">Monthly payment $</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                          </div>
+                          <div class="modal-body">
+                            <input type="text" class="form-control" id="monthlyPayment"
+                          aria-label="Amount (to the nearest dollar)" readonly>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                           </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
@@ -386,7 +478,8 @@
   </footer><!-- End  Footer -->
 
   <div id="preloader"></div>
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -395,6 +488,7 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/calculo.js"></script>
 
 </body>
 
