@@ -1,72 +1,100 @@
-
+var VSalarioMinimo = document.getElementById('minimumSalary');
+var vPagoMensual = document.getElementById('monthlyPayment');
 
 function mostrarValor() {
     var valor = document.getElementById("rango").value;
     document.getElementById("valor").innerHTML = valor;
 }
 
-function montoPago() {
-    var pagoMensual = document.getElementById('monthlyPayment'); //Campo para mostrar el pago mensual
-    var salarioMinimo = document.getElementById('minimumSalary'); //Campo para mostrar el salario minimo
-    const miMensaje1 = document.getElementById("miMensaje1"); //Campo para mostrar el mensaje de cumple o no
-    const miMensaje2 = document.getElementById("miMensaje2"); //Campo para mostrar el mensaje de cumple con edad
-    const miMensaje3 = document.getElementById("miMensaje3"); //Campo para mostrar el mensaje de cumple o no
-    const miMensaje4 = document.getElementById("miMensaje4"); //Campo para mostrar el mensaje de cumple con edad
-    const miMensaje5 = document.getElementById("miMensaje5"); //Campo para mostrar el mensaje de cumple o no
-    const miMensaje6 = document.getElementById("miMensaje6"); //Campo para mostrar el mensaje de cumple con edad
-    const miMensaje7 = document.getElementById("miMensaje7"); //Campo para mostrar el mensaje de cumple o no
-    const miMensaje8 = document.getElementById("miMensaje8"); //Campo para mostrar el mensaje de cumple con edad
-    const miMensaje9 = document.getElementById("miMensaje9"); //Campo para mostrar el mensaje de cumple o no
-    const miMensaje10 = document.getElementById("miMensaje10"); //Campo para mostrar el mensaje de cumple con edad
-    const miMensaje11 = document.getElementById("miMensaje11"); //Campo para mostrar el mensaje de cumple o no
-    const miMensaje12 = document.getElementById("miMensaje12"); //Campo para mostrar el mensaje de cumple con edad
-    const miMensaje13 = document.getElementById("miMensaje13"); //Campo para mostrar el mensaje de cumple con edad
-
-
-    var email = document.getElementById("email").value;  //Valor del email
-    var name = document.getElementById("name").value;  //Valor del name
-    var Birthdate = document.getElementById("Birthdate").value;
-    var netSalary = document.getElementById("netSalary").value;
+function maximoSolicitado(){
     var homeValue = document.getElementById("homeValue").value;
-    var amountRequired = document.getElementById("amountRequired").value;
-    var rango = document.getElementById("rango").value;
-    var interestRate = document.getElementById("interestRate").value;
-    var pFinance = parseFloat(homeValue) / parseFloat(amountRequired);
+    var amountRequired = parseFloat(document.getElementById("amountRequired").value);
+    var calcular = (homeValue * 80)/100;
 
-    var sn = parseFloat(document.getElementById("netSalary").value);  //Valor del salario neto
-    var hv = parseFloat(document.getElementById("homeValue").value);  //Valor de la vivienda
-    var ms = parseFloat(document.getElementById("amountRequired").value); //Monto solicitado
-    var tm = parseFloat(document.getElementById("interestRate").value); //Tasa de interés mensual
-    var p = parseInt(document.getElementById("rango").value * 12); //Plazo en meses
+    if (amountRequired>calcular) {
+        alert("El monto requerido debe ser maximo del 80% del valor de la casa");
+        document.getElementById("amountRequired").value='';
+    }
+}
+
+
+function pagoMensual() {
+
+
+    var interestRate = parseFloat(document.getElementById("interestRate").value);
+    var rango = parseInt(document.getElementById("rango").value * 12); //Plazo en meses
+    var amountRequired = parseFloat(document.getElementById("amountRequired").value);
+
+    var ms = amountRequired; //Monto solicitado
+    var tm = interestRate; //Tasa de interés mensual
+    var p = rango;
+    var pm = 0;
 
     var pmC1 = ms * ((tm / 100) * Math.pow((1 + (tm / 100)), p));
     var pmC2 = (Math.pow((1 + (tm / 100)), p) - 1);
 
-    var pm = pmC1 / pmC2; //Pago mensual
+    pm = pmC1 / pmC2;
 
-    if (pm > 0) {
+    vPagoMensual.value = pm;
+    VSalarioMinimo.value = pm / 0.40
 
-        pagoMensual.value = pm;
-        salarioMinimo.value = pm / 0.40
+
+    return pm; //Pago mensual
+
+}
+
+function pagoMinimo() {
+    var pagoMinimo = 0;
+    return pagoMinimo = pagoMensual() / 0.40;
+}
+
+function pagoDetalle() {
+
+    var vName = document.getElementById("name").value;
+    var email = document.getElementById("email").value;
+    var Birthdate = document.getElementById("Birthdate").value;
+    var netSalary = document.getElementById("netSalary").value;
+    var interestRate = parseFloat(document.getElementById("interestRate").value);
+    var rango = parseInt(document.getElementById("rango").value * 12); //Plazo en meses
+    var homeValue = document.getElementById("homeValue").value;
+    var amountRequired = parseFloat(document.getElementById("amountRequired").value);
+    var pFinance = parseFloat(homeValue) / parseFloat(amountRequired);
+
+    var miMensaje1 = document.getElementById("miMensaje1");
+    var miMensaje2 = document.getElementById("miMensaje2");
+    var miMensaje3 = document.getElementById("miMensaje3");
+    var miMensaje4 = document.getElementById("miMensaje4");
+    var miMensaje5 = document.getElementById("miMensaje5");
+    var miMensaje6 = document.getElementById("miMensaje6");
+    var miMensaje7 = document.getElementById("miMensaje7");
+    var miMensaje8 = document.getElementById("miMensaje8");
+    var miMensaje9 = document.getElementById("miMensaje9");
+    var miMensaje10 = document.getElementById("miMensaje10");
+    var miMensaje11 = document.getElementById("miMensaje11");
+    var miMensaje12 = document.getElementById("miMensaje12");
+    var miMensaje13 = document.getElementById("miMensaje13");
+
+    if (pagoMensual() > 0) {
+
 
         var card = document.getElementById("card");
         card.style.display = "block";
 
         miMensaje1.textContent = email;
-        miMensaje2.textContent = name;
+        miMensaje2.textContent = vName;
         miMensaje3.textContent = Birthdate;
         miMensaje4.textContent = netSalary;
         miMensaje5.textContent = homeValue;
         miMensaje6.textContent = amountRequired;
         miMensaje7.textContent = rango;
         miMensaje8.textContent = interestRate;
-        miMensaje9.textContent = pagoMensual.value;
-        miMensaje10.textContent = salarioMinimo.value;
+        miMensaje9.textContent = pagoMensual();
+        miMensaje10.textContent = pagoMinimo();
         miMensaje11.textContent = pFinance;
 
 
 
-        if (sn >= salarioMinimo.value) {
+        if (netSalary >= pagoMinimo()) {
             miMensaje12.textContent = "Monto de salario suficiente para el crédito.";
         } else {
             miMensaje12.textContent = "Monto de salario insuficiente.";
@@ -90,23 +118,21 @@ function montoPago() {
 
 function memorialocal() {
 
+
     if (typeof Storage !== "undefined") {
 
-        var formulario = document.querySelector("form");
-
-
+        var vName = document.getElementById("name").value;
         var email = document.getElementById("email").value;
-        var name = document.getElementById("name").value;
         var Birthdate = document.getElementById("Birthdate").value;
         var netSalary = document.getElementById("netSalary").value;
+        var interestRate = parseFloat(document.getElementById("interestRate").value);
+        var rango = parseInt(document.getElementById("rango").value); //Plazo en meses
         var homeValue = document.getElementById("homeValue").value;
-        var amountRequired = document.getElementById("amountRequired").value;
-        var rango = document.getElementById("rango").value;
-        var interestRate = document.getElementById("interestRate").value;
-
+        var amountRequired = parseFloat(document.getElementById("amountRequired").value);
+        var pFinance = parseFloat(homeValue) / parseFloat(amountRequired);
 
         localStorage.setItem("email", email);
-        localStorage.setItem("name", name);
+        localStorage.setItem("name", vName);
         localStorage.setItem("Birthdate", Birthdate);
         localStorage.setItem("netSalary", netSalary);
         localStorage.setItem("homeValue", homeValue);
@@ -126,7 +152,7 @@ function cargapantalla() {
     if (typeof Storage !== "undefined") {
 
         var email = localStorage.getItem("email");
-        var name = localStorage.getItem("name");
+        var vName = localStorage.getItem("name");
         var Birthdate = localStorage.getItem("Birthdate");
         var netSalary = localStorage.getItem("netSalary");
         var homeValue = localStorage.getItem("homeValue");
@@ -135,7 +161,7 @@ function cargapantalla() {
         var interestRate = localStorage.getItem("interestRate");
 
         document.getElementById("email").value = email;
-        document.getElementById("name").value = name;
+        document.getElementById("name").value = vName;
         document.getElementById("Birthdate").value = Birthdate;
         document.getElementById("netSalary").value = netSalary;
         document.getElementById("homeValue").value = homeValue;
@@ -162,28 +188,45 @@ function interes(tasaMensual, mes, pagoMensual, montoSolicitado) {
 
 function cargarTabla() {
     var table = document.getElementById("contenedor-tabla");
-    
+    var boton = document.getElementById("btnProjection");
 
-    if ( table.style.display == "none") {
-        
+
+    if (table.style.display == "none") {
+        boton.value = 'Hide projection';
         table.style.display = "block";
-        
-        var datos = [
-            { mes: "1", pago: "2423", interes: 30, amortizacion: 30, saldo: 30 },
-            { mes: "2", pago: "4324", interes: 30, amortizacion: 30, saldo: 30 },
-            { mes: "3", pago: "32424", interes: 30, amortizacion: 30, saldo: 30 },
-            { mes: "4", pago: "23424", interes: 30, amortizacion: 30, saldo: 30 },
-            { mes: "5", pago: "324233", interes: 30, amortizacion: 30, saldo: 30 },
-            { mes: "6", pago: "23434", interes: 30, amortizacion: 30, saldo: 30 }
-        ];
 
-        
-    
+        var cantMes = parseInt(document.getElementById("rango").value * 12); //Plazo en meses
+        var pagoMensual = parseFloat(document.getElementById("monthlyPayment").value);//pago mensal
+        var interestRate = parseFloat(document.getElementById("interestRate").value);//Tasa mensual
+        var amountRequired = parseFloat(document.getElementById("amountRequired").value);//Monto solicitado
+        var ObPago = { mes: 0, pago: 0, interes: 0, amortizacion: 0, saldo: 0 };//Creamos el objeto pagos
+        var vSaldo = amountRequired;
+        var ArregloPagos = [];
+
+
+
+        for (let i = 0; i < cantMes; i++) {
+
+
+            var nuevoPago = Object.create(ObPago);
+            nuevoPago.mes = i + 1;
+            nuevoPago.pago = parseFloat(pagoMensual.toFixed(2));
+            nuevoPago.interes = parseFloat(interes(interestRate, nuevoPago.mes, pagoMensual, amountRequired).toFixed(2));
+            nuevoPago.amortizacion = parseFloat((pagoMensual - nuevoPago.interes).toFixed(2));
+            nuevoPago.saldo = vSaldo - nuevoPago.amortizacion;
+            ArregloPagos.push(nuevoPago);
+            vSaldo = ArregloPagos[i].saldo;
+
+
+        }
+
+
         var tabla = document.createElement("table");
+        tabla.classList.add('table', 'table-hover');
         var encabezado = document.createElement("thead");
         var filaEncabezado = document.createElement("tr");
         var cuerpo = document.createElement("tbody");
-    
+
         // Crear encabezado de la tabla
         var columnas = ["Mes", "Pago Mensual", "Interes", "Amortización", "Saldo"];
         columnas.forEach(function (columna) {
@@ -193,31 +236,32 @@ function cargarTabla() {
         });
         encabezado.appendChild(filaEncabezado);
         tabla.appendChild(encabezado);
-    
+
         // Crear cuerpo de la tabla
-        datos.forEach(function (fila) {
+        ArregloPagos.forEach(function (pago) {
             var filaCuerpo = document.createElement("tr");
-            Object.keys(fila).forEach(function (columna) {
+            Object.keys(pago).forEach(function (columna) {
                 var celdaCuerpo = document.createElement("td");
-                celdaCuerpo.textContent = fila[columna];
+                celdaCuerpo.textContent = pago[columna];
                 filaCuerpo.appendChild(celdaCuerpo);
             });
             cuerpo.appendChild(filaCuerpo);
         });
         tabla.appendChild(cuerpo);
-    
+
         // Agregar tabla al contenedor
         var contenedorTabla = document.getElementById("contenedor-tabla");
         contenedorTabla.innerHTML = "";
         contenedorTabla.appendChild(tabla);
-    
-    }else {
-       
-        table.style.display = "none";
-    }
-   
 
-    
+    } else {
+
+        table.style.display = "none";
+        boton.value = 'Show projection';
+    }
+
+
+
 }
 
 

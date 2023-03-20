@@ -282,14 +282,14 @@
                       <div class="input-group mb-4">
                         <span class="input-group-text">Amount required $</span>
                         <input type="number" class="form-control" id="amountRequired"
-                          aria-p="Amount (to the nearest dollar)" required>
+                          aria-p="Amount (to the nearest dollar)" onkeyup="maximoSolicitado()"; required>
                         <span class="input-group-text">maximum 80% on housing</span>
                       </div>
                     </div>
 
                     <div class="col-md-12">
                       <input class="btn btn-secondary" type="button" value="Calculate monthly payment"
-                        onclick="montoPago( )">
+                        onclick="pagoDetalle()">
                     </div>
 
                     <div class="col-md-6" style="padding-top: 25px;">
@@ -355,11 +355,13 @@
                     </div>
 
                     <div >
-                      <input class="btn btn-secondary" type="button" value="Show projection" onclick="cargarTabla( )">
+                      <input id="btnProjection" style="margin-top: 10px;" class="btn btn-secondary" type="button" value="Show projection" onclick="cargarTabla( )">
                     </div>
 
 
-                    <div class="table table-hover" id="contenedor-tabla"></div>
+                    <div id="contenedor-tabla"></div>
+
+                    
 
                   </div>
 
