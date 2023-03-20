@@ -48,13 +48,13 @@
         <div class="row">
           <div class="col-md-12 mb-2">
             <div class="form-group">
-              <label class="pb-2" for="Type">Keyword</label>
+              <p class="pb-2" for="Type">Keyword</p>
               <input type="text" class="form-control form-control-lg form-control-a" placeholder="Keyword">
             </div>
           </div>
           <div class="col-md-6 mb-2">
             <div class="form-group mt-3">
-              <label class="pb-2" for="Type">Type</label>
+              <p class="pb-2" for="Type">Type</p>
               <select class="form-control form-select form-control-a" id="Type">
                 <option>All Type</option>
                 <option>For Rent</option>
@@ -65,7 +65,7 @@
           </div>
           <div class="col-md-6 mb-2">
             <div class="form-group mt-3">
-              <label class="pb-2" for="city">City</label>
+              <p class="pb-2" for="city">City</p>
               <select class="form-control form-select form-control-a" id="city">
                 <option>All City</option>
                 <option>Alabama</option>
@@ -77,7 +77,7 @@
           </div>
           <div class="col-md-6 mb-2">
             <div class="form-group mt-3">
-              <label class="pb-2" for="bedrooms">Bedrooms</label>
+              <p class="pb-2" for="bedrooms">Bedrooms</p>
               <select class="form-control form-select form-control-a" id="bedrooms">
                 <option>Any</option>
                 <option>01</option>
@@ -88,7 +88,7 @@
           </div>
           <div class="col-md-6 mb-2">
             <div class="form-group mt-3">
-              <label class="pb-2" for="garages">Garages</label>
+              <p class="pb-2" for="garages">Garages</p>
               <select class="form-control form-select form-control-a" id="garages">
                 <option>Any</option>
                 <option>01</option>
@@ -100,7 +100,7 @@
           </div>
           <div class="col-md-6 mb-2">
             <div class="form-group mt-3">
-              <label class="pb-2" for="bathrooms">Bathrooms</label>
+              <p class="pb-2" for="bathrooms">Bathrooms</p>
               <select class="form-control form-select form-control-a" id="bathrooms">
                 <option>Any</option>
                 <option>01</option>
@@ -111,7 +111,7 @@
           </div>
           <div class="col-md-6 mb-2">
             <div class="form-group mt-3">
-              <label class="pb-2" for="price">Min Price</label>
+              <p class="pb-2" for="price">Min Price</p>
               <select class="form-control form-select form-control-a" id="price">
                 <option>Unlimite</option>
                 <option>$50,000</option>
@@ -133,7 +133,7 @@
   <nav class="navbar navbar-default navbar-trans navbar-expand-lg fixed-top">
     <div class="container">
       <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarDefault"
-        aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
+        aria-controls="navbarDefault" aria-expanded="false" aria-p="Toggle navigation">
         <span></span>
         <span></span>
         <span></span>
@@ -200,7 +200,7 @@
             </div>
           </div>
           <div class="col-md-12 col-lg-4">
-            <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+            <nav aria-p="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
               <ol class="breadcrumb">
                 <li class="breadcrumb-item">
                   <a href="index.html">Home</a>
@@ -224,39 +224,39 @@
               <div id="formularioCredito">
                 Incluya aquí su formulario
 
-                <form>
+                <form name="calculo" class="calc">
                   <div class="row">
                     <div class="col-md-4 mb-3">
                       <div class="form-group">
-                        <input type="text" name="name" class="form-control form-control-lg form-control-a"
+                        <input id="name" type="text" name="name" class="form-control form-control-lg form-control-a"
                           placeholder="Your Name" required>
                       </div>
                     </div>
                     <div class="col-md-5 mb-3">
                       <div class="form-group">
-                        <input name="email" type="email" class="form-control form-control-lg form-control-a"
+                        <input id="email" name="email" type="email" class="form-control form-control-lg form-control-a"
                           placeholder="Your Email" required>
                       </div>
                     </div>
                     <div class="col-md-3 mb-3">
                       <div class="form-group">
-                        <input type="date" name="Birthdate" class="form-control form-control-lg form-control-a"
-                          placeholder="Birthdate" required>
+                        <input id="Birthdate" type="date" name="Birthdate"
+                          class="form-control form-control-lg form-control-a" placeholder="Birthdate" required>
                       </div>
                     </div>
 
                     <div class="col-md-4">
                       <div class="input-group mb-3">
                         <span class="input-group-text">Net Monthly Salary $</span>
-                        <input type="number" class="form-control" id="netSalary"
-                          aria-label="Amount (to the nearest dollar)" required>
+                        <input type="number" class="form-control" id="netSalary" aria-p="Amount (to the nearest dollar)"
+                          required>
                       </div>
                     </div>
                     <div class="col-md-4">
                       <div class="input-group mb-3">
                         <span class="input-group-text">Interest Rate $</span>
                         <input type="number" value="7.10" class="form-control" id="interestRate"
-                          aria-label="Amount (to the nearest dollar)" required>
+                          aria-p="Amount (to the nearest dollar)" required>
                         <span class="input-group-text">%</span>
                       </div>
                     </div>
@@ -273,8 +273,8 @@
                     <div class="col-md-4">
                       <div class="input-group mb-3">
                         <span class="input-group-text">Home value $</span>
-                        <input type="number" class="form-control" id="homeValue"
-                          aria-label="Amount (to the nearest dollar)" required>
+                        <input type="number" class="form-control" id="homeValue" aria-p="Amount (to the nearest dollar)"
+                          required>
                       </div>
                     </div>
 
@@ -282,29 +282,93 @@
                       <div class="input-group mb-4">
                         <span class="input-group-text">Amount required $</span>
                         <input type="number" class="form-control" id="amountRequired"
-                          aria-label="Amount (to the nearest dollar)" required>
+                          aria-p="Amount (to the nearest dollar)" required>
                         <span class="input-group-text">maximum 80% on housing</span>
                       </div>
                     </div>
 
                     <div class="col-md-12">
-                      <input class="btn btn-secondary" type="submit" value="Submit" onclick="montoPago( )">
+                      <input class="btn btn-secondary" type="button" value="Calculate monthly payment"
+                        onclick="montoPago( )">
                     </div>
 
-                    <div class="col-md-4" style="padding-top: 25px;">
+                    <div class="col-md-6" style="padding-top: 25px;">
                       <div class="input-group mb-3">
                         <span class="input-group-text">Monthly payment $</span>
                         <input type="text" class="form-control" id="monthlyPayment"
-                          aria-label="Amount (to the nearest dollar)">
+                          aria-p="Amount (to the nearest dollar)" readonly>
                       </div>
                     </div>
 
+                    <div class="col-md-6" style="padding-top: 25px;">
+                      <div class="input-group mb-3">
+                        <span class="input-group-text">Minimum salary $</span>
+                        <input type="text" class="form-control" id="minimumSalary"
+                          aria-p="Amount (to the nearest dollar)" required>
+                      </div>
+                    </div>
+
+
+
+
+                    <div class="col-md-12" style="padding-top: 25px;">
+                      <div id="card" class="card" style="display: none;">
+                        <h5 class="card-header">Calculated</h5>
+                        <div class="card-body col-md-12">
+                          <h5 class="card-title">Happy Eart Credit</h5>
+                          <div class="row  justify-content-start">
+                            <div class="col-md-3">
+                              <p for="email">Email:</p>
+                              <p for="name">Name:</p>
+                              <p for="Birthdate">Birthdate:</p>
+                              <p for="netSalary">Net Monthly Salary:</p>
+                              <p for="homeValue">Home value:</p>
+                              <p for="amountRequired">Amount required:</p>
+                              <p for="rango">Range Years:</p>
+                              <p for="interestRate">Interest Rate:</p>
+                              <p for="monthlyPayment">Monthly payment:</p>
+                              <p for="minimumSalary">Minimum salary:</p>
+                              <p for="pFinance">Percentage to finance:</p>
+                            </div>
+                            <div class="col-md-9">
+                              <p id="miMensaje1">In process</p>
+                              <p id="miMensaje2">In process</p>
+                              <p id="miMensaje3">In process</p>
+                              <p id="miMensaje4">In process</p>
+                              <p id="miMensaje5">In process</p>
+                              <p id="miMensaje6">In process</p>
+                              <p id="miMensaje7">In process</p>
+                              <p id="miMensaje8">In process</p>
+                              <p id="miMensaje9">In process</p>
+                              <p id="miMensaje10">In process</p>
+                              <p id="miMensaje11">In process</p>
+                              <p id="miMensaje12" style="color: crimson;">In process</p>
+                              <p id="miMensaje13" style="color: crimson;">In process</p>
+
+                            </div>
+                          </div>
+
+                          <button class="btn btn-primary" onclick="memorialocal()">Keep information</button>
+
+                        </div>
+                      </div>
+                    </div>
+
+                    <div >
+                      <input class="btn btn-secondary" type="button" value="Show projection" onclick="cargarTabla( )">
+                    </div>
+
+
+                    <div class="table table-hover" id="contenedor-tabla"></div>
+
                   </div>
-                </form>
+
               </div>
+              </form>
             </div>
           </div>
         </div>
+      </div>
       </div>
     </section><!-- End Contact Single-->
 
