@@ -190,7 +190,7 @@
                       <div class="input-group mb-4">
                         <span class="input-group-text">Amount required $</span>
                         <input type="number" class="form-control" id="amountRequired"
-                          aria-p="Amount (to the nearest dollar)" onkeyup="maximoSolicitado()"; required>
+                          aria-p="Amount (to the nearest dollar)" onkeyup="maximoSolicitado()" ; required>
                         <span class="input-group-text">maximum 80% on housing</span>
                       </div>
                     </div>
@@ -262,14 +262,58 @@
                       </div>
                     </div>
 
-                    <div >
-                      <input id="btnProjection" style="margin-top: 10px;" class="btn btn-secondary" type="button" value="Show projection" onclick="cargarTabla( )">
+                    <div>
+                      <input id="btnProjection" style="margin-top: 10px;" class="btn btn-secondary" type="button"
+                        value="Show projection" onclick="cargarTabla( )">
+                      <input id="btnSendEmail" style="margin-top: 10px;" class="btn btn-secondary" type="button"
+                        value="Send by Email" onclick="enviar( )">
                     </div>
 
 
-                    <div id="contenedor-tabla"></div>
+
+                    <form id="form">
+                      <div class="field">
+                        <label for="from_name">from_name</label>
+                        <input type="text" name="from_name" id="from_name">
+                      </div>
+                      <div class="field">
+                        <label for="to_name">to_name</label>
+                        <input type="text" name="to_name" id="to_name">
+                      </div>
+                      <div class="field">
+                        <label for="message">message</label>
+                        <input type="text" name="message" id="message">
+                      </div>
+                      <div class="field">
+                        <label for="my_html">my_html</label>
+                        <input type="text" name="my_html" id="my_html">
+                      </div>
+                      <div class="field">
+                        <label for="reply_to">reply_to</label>
+                        <input type="text" name="reply_to" id="reply_to">
+                      </div>
+                    
+                      <input type="submit" id="button" value="Send Email" >
+                    </form>
+                    
+                    <script type="text/javascript"
+                      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+                    
+                    <script type="text/javascript">
+                      emailjs.init('Ip8fRlqXEPro-VDTg')
+                    </script>
+
+<div id="contenedor-tabla"></div>
 
                     
+
+                    <script type="text/javascript"
+                      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+                    <script type="text/javascript">
+                      emailjs.init('Ip8fRlqXEPro-VDTg')
+                    </script>
+
 
                   </div>
 
@@ -453,6 +497,8 @@
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
   <script src="assets/js/calculo.js"></script>
+
+  
 
 </body>
 

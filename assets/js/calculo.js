@@ -6,14 +6,14 @@ function mostrarValor() {
     document.getElementById("valor").innerHTML = valor;
 }
 
-function maximoSolicitado(){
+function maximoSolicitado() {
     var homeValue = document.getElementById("homeValue").value;
     var amountRequired = parseFloat(document.getElementById("amountRequired").value);
-    var calcular = (homeValue * 80)/100;
+    var calcular = (homeValue * 80) / 100;
 
-    if (amountRequired>calcular) {
+    if (amountRequired > calcular) {
         alert("El monto requerido debe ser maximo del 80% del valor de la casa");
-        document.getElementById("amountRequired").value='';
+        document.getElementById("amountRequired").value = '';
     }
 }
 
@@ -190,80 +190,139 @@ function cargarTabla() {
     var table = document.getElementById("contenedor-tabla");
     var boton = document.getElementById("btnProjection");
 
-
-    if (table.style.display == "none") {
-        boton.value = 'Hide projection';
-        table.style.display = "block";
-
-        var cantMes = parseInt(document.getElementById("rango").value * 12); //Plazo en meses
-        var pagoMensual = parseFloat(document.getElementById("monthlyPayment").value);//pago mensal
-        var interestRate = parseFloat(document.getElementById("interestRate").value);//Tasa mensual
-        var amountRequired = parseFloat(document.getElementById("amountRequired").value);//Monto solicitado
-        var ObPago = { mes: 0, pago: 0, interes: 0, amortizacion: 0, saldo: 0 };//Creamos el objeto pagos
-        var vSaldo = amountRequired;
-        var ArregloPagos = [];
+    if (VSalarioMinimo.value != '') {
 
 
+        if (table.style.display == "none") {
+            boton.value = 'Hide projection';
+            table.style.display = "block";
 
-        for (let i = 0; i < cantMes; i++) {
+            var cantMes = parseInt(document.getElementById("rango").value * 12); //Plazo en meses
+            var pagoMensual = parseFloat(document.getElementById("monthlyPayment").value);//pago mensal
+            var interestRate = parseFloat(document.getElementById("interestRate").value);//Tasa mensual
+            var amountRequired = parseFloat(document.getElementById("amountRequired").value);//Monto solicitado
+            var ObPago = { mes: 0, pago: 0, interes: 0, amortizacion: 0, saldo: 0 };//Creamos el objeto pagos
+            var vSaldo = amountRequired;
+            var ArregloPagos = [];
 
 
-            var nuevoPago = Object.create(ObPago);
-            nuevoPago.mes = i + 1;
-            nuevoPago.pago = parseFloat(pagoMensual.toFixed(2));
-            nuevoPago.interes = parseFloat(interes(interestRate, nuevoPago.mes, pagoMensual, amountRequired).toFixed(2));
-            nuevoPago.amortizacion = parseFloat((pagoMensual - nuevoPago.interes).toFixed(2));
-            nuevoPago.saldo = vSaldo - nuevoPago.amortizacion;
-            ArregloPagos.push(nuevoPago);
-            vSaldo = ArregloPagos[i].saldo;
+
+            for (let i = 0; i < cantMes; i++) {
 
 
+                var nuevoPago = Object.create(ObPago);
+                nuevoPago.mes = i + 1;
+                nuevoPago.pago = parseFloat(pagoMensual.toFixed(2));
+                nuevoPago.interes = parseFloat(interes(interestRate, nuevoPago.mes, pagoMensual, amountRequired).toFixed(2));
+                nuevoPago.amortizacion = parseFloat((pagoMensual - nuevoPago.interes).toFixed(2));
+                nuevoPago.saldo = vSaldo - nuevoPago.amortizacion;
+                ArregloPagos.push(nuevoPago);
+                vSaldo = ArregloPagos[i].saldo;
+
+
+            }
+
+
+            var tabla = document.createElement("table");
+            tabla.classList.add('table', 'table-hover');
+            tabla.setAttribute("id", "miTabla");
+            var encabezado = document.createElement("thead");
+            var filaEncabezado = document.createElement("tr");
+            var cuerpo = document.createElement("tbody");
+
+            // Crear encabezado de la tabla
+            var columnas = ["Mes", "Pago Mensual", "Interes", "Amortización", "Saldo"];
+            columnas.forEach(function (columna) {
+                var celdaEncabezado = document.createElement("th");
+                celdaEncabezado.textContent = columna;
+                filaEncabezado.appendChild(celdaEncabezado);
+            });
+            encabezado.appendChild(filaEncabezado);
+            tabla.appendChild(encabezado);
+
+            // Crear cuerpo de la tabla
+            ArregloPagos.forEach(function (pago) {
+                var filaCuerpo = document.createElement("tr");
+                Object.keys(pago).forEach(function (columna) {
+                    var celdaCuerpo = document.createElement("td");
+                    celdaCuerpo.textContent = pago[columna];
+                    filaCuerpo.appendChild(celdaCuerpo);
+                });
+                cuerpo.appendChild(filaCuerpo);
+            });
+            tabla.appendChild(cuerpo);
+
+            // Agregar tabla al contenedor
+            var contenedorTabla = document.getElementById("contenedor-tabla");
+            contenedorTabla.innerHTML = "";
+            contenedorTabla.appendChild(tabla);
+
+        } else {
+
+            table.style.display = "none";
+            boton.value = 'Show projection';
         }
 
-
-        var tabla = document.createElement("table");
-        tabla.classList.add('table', 'table-hover');
-        var encabezado = document.createElement("thead");
-        var filaEncabezado = document.createElement("tr");
-        var cuerpo = document.createElement("tbody");
-
-        // Crear encabezado de la tabla
-        var columnas = ["Mes", "Pago Mensual", "Interes", "Amortización", "Saldo"];
-        columnas.forEach(function (columna) {
-            var celdaEncabezado = document.createElement("th");
-            celdaEncabezado.textContent = columna;
-            filaEncabezado.appendChild(celdaEncabezado);
-        });
-        encabezado.appendChild(filaEncabezado);
-        tabla.appendChild(encabezado);
-
-        // Crear cuerpo de la tabla
-        ArregloPagos.forEach(function (pago) {
-            var filaCuerpo = document.createElement("tr");
-            Object.keys(pago).forEach(function (columna) {
-                var celdaCuerpo = document.createElement("td");
-                celdaCuerpo.textContent = pago[columna];
-                filaCuerpo.appendChild(celdaCuerpo);
-            });
-            cuerpo.appendChild(filaCuerpo);
-        });
-        tabla.appendChild(cuerpo);
-
-        // Agregar tabla al contenedor
-        var contenedorTabla = document.getElementById("contenedor-tabla");
-        contenedorTabla.innerHTML = "";
-        contenedorTabla.appendChild(tabla);
-
-    } else {
-
-        table.style.display = "none";
-        boton.value = 'Show projection';
     }
-
-
 
 }
 
+// function enviarTablaPorCorreo() {
+//     // Obtener la tabla HTML
+//     const tabla = document.getElementById("miTabla");
+//     const tablaHTML = tabla.innerHTML;
+//     // Crear un objeto de correo electrónico
+//     const correoElectronico = {
+//       to: "jo.carranz@gmail.com",
+//       subject: "Tabla HTML",
+//       html: tablaHTML
+//     };
+
+//     // Enviar el correo electrónico utilizando la API de correo electrónico de JavaScript
+//     var templateParams = {
+//         name: 'James',
+//         notes: 'Check this out!'
+//     };
+
+//     emailjs.send('service_iwx8tal', 'template_aw88ncw', templateParams)
+//         .then(function(response) {
+//            console.log('SUCCESS!', response.status, response.text);
+//         }, function(error) {
+//            console.log('FAILED...', error);
+//         });
+//   }
+
+function enviar() {
+
+    const btn = document.getElementById('btnSendEmail');
+
+    document.getElementById('form');
+
+    btn.value = 'Sending...';
+
+    const serviceID = 'service_iwx8tal';
+    const templateID = 'template_aw88ncw';
+
+
+    emailjs.send("serviceID", "templateID", {
+        to_name: "jo.carranz@gmail.com",
+        from_name: "jo.carranz@gmail.com",
+        message_html: "Cuerpo del mensaje"
+    }, (err) => {
+        btn.value = 'Send Email';
+        alert(JSON.stringify(err));
+    });
+    
+}
+
+function sendEmail() {
+    emailjs.send("service_iwx8tal", "template_aw88ncw", { variable1: valor1, variable2: valor2 })
+        .then(function (response) {
+            console.log("SUCCESS", response);
+        }, function (error) {
+            console.log("FAILED", error);
+        });
+}
 
 window.onload = cargapantalla;
 
