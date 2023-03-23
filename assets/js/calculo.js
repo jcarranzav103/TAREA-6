@@ -151,8 +151,8 @@ function memorialocal() {
 function cargapantalla() {
     if (typeof Storage !== "undefined") {
 
-        var email = localStorage.getItem("email");
-        var vName = localStorage.getItem("name");
+        var email = localStorage.getItem("email").toUpperCase();
+        var vName = localStorage.getItem("name").toUpperCase();
         var Birthdate = localStorage.getItem("Birthdate");
         var netSalary = localStorage.getItem("netSalary");
         var homeValue = localStorage.getItem("homeValue");
@@ -267,62 +267,6 @@ function cargarTabla() {
 
 }
 
-// function enviarTablaPorCorreo() {
-//     // Obtener la tabla HTML
-//     const tabla = document.getElementById("miTabla");
-//     const tablaHTML = tabla.innerHTML;
-//     // Crear un objeto de correo electrónico
-//     const correoElectronico = {
-//       to: "jo.carranz@gmail.com",
-//       subject: "Tabla HTML",
-//       html: tablaHTML
-//     };
-
-//     // Enviar el correo electrónico utilizando la API de correo electrónico de JavaScript
-//     var templateParams = {
-//         name: 'James',
-//         notes: 'Check this out!'
-//     };
-
-//     emailjs.send('service_iwx8tal', 'template_aw88ncw', templateParams)
-//         .then(function(response) {
-//            console.log('SUCCESS!', response.status, response.text);
-//         }, function(error) {
-//            console.log('FAILED...', error);
-//         });
-//   }
-
-function enviar() {
-
-    const btn = document.getElementById('btnSendEmail');
-
-    document.getElementById('form');
-
-    btn.value = 'Sending...';
-
-    const serviceID = 'service_iwx8tal';
-    const templateID = 'template_aw88ncw';
-
-
-    emailjs.send("serviceID", "templateID", {
-        to_name: "jo.carranz@gmail.com",
-        from_name: "jo.carranz@gmail.com",
-        message_html: "Cuerpo del mensaje"
-    }, (err) => {
-        btn.value = 'Send Email';
-        alert(JSON.stringify(err));
-    });
-    
-}
-
-function sendEmail() {
-    emailjs.send("service_iwx8tal", "template_aw88ncw", { variable1: valor1, variable2: valor2 })
-        .then(function (response) {
-            console.log("SUCCESS", response);
-        }, function (error) {
-            console.log("FAILED", error);
-        });
-}
 
 window.onload = cargapantalla;
 
